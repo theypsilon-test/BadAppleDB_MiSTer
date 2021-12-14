@@ -17,10 +17,8 @@
 # You can download the latest version of this tool from:
 # https://github.com/theypsilon/BadAppleDB_MiSTer
 
-import hashlib
 import json
 import time
-import os
 
 def main():
     print('START!')
@@ -33,24 +31,24 @@ def main():
         "zips": {},
         "base_files_url": "",
         "default_options": {},
-        "header": make_header(),
+        "header": bad_apple_header(),
         "timestamp":  int(time.time())
     }
 
     save_json(db, "bad_apple_db.json")
 
-def make_header():
+def bad_apple_header():
     with open('data.txt', 'rt') as fin:
         data = fin.read()
 
-    result = []
+    header = []
     for page in data.split("SPLIT"):
-        result.append('\033[H\033[2J')
-        result.append(page + '\r')
-        result.append(0.05)
+        header.append('\033[H\033[2J')
+        header.append(page + '\r')
+        header.append(0.05)
     
-    result.append(10.0)
-    return result
+    header.append(10.0)
+    return header
 
 def save_json(db, json_name):
     with open(json_name, 'w') as f:
