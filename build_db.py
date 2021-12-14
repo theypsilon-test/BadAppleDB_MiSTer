@@ -46,7 +46,7 @@ def make_header():
     result = []
     for page in data.split("SPLIT"):
         result.append(page)
-        result.append(0.32)
+        result.append(0.16)
     
     return result
 
