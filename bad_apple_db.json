@@ -1,0 +1,16 @@
+{
+    "base_files_url": "",
+    "db_files": [],
+    "db_id": "bad_apple_db",
+    "default_options": {},
+    "files": {},
+    "folders": {},
+    "header": [
+        "TEST 10 SECS",
+        10.0,
+        "OK",
+        2.0
+    ],
+    "timestamp": 1639442654,
+    "zips": {}
+}
