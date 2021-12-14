@@ -46,8 +46,9 @@ def make_header():
     result = []
     for page in data.split("SPLIT"):
         result.append(page)
-        result.append(0.04)
+        result.append(0.032)
     
+    result.append(10.0)
     return result
 
 def hash(file):
