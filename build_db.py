@@ -45,32 +45,17 @@ def make_header():
 
     result = []
     for page in data.split("SPLIT"):
-        result.append(page)
-        result.append(0.032)
+        result.append('\033[H\033[2J')
+        result.append(page + '\r')
+        result.append(0.05)
     
     result.append(10.0)
     return result
-
-def hash(file):
-    with open(file, "rb") as f:
-        file_hash = hashlib.md5()
-        chunk = f.read(8192)
-        while chunk:
-            file_hash.update(chunk)
-            chunk = f.read(8192)
-        return file_hash.hexdigest()
-
-def size(file):
-    return os.path.getsize(file)
 
 def save_json(db, json_name):
     with open(json_name, 'w') as f:
         json.dump(db, f, sort_keys=True, indent=4)
     print('Saved ' + json_name)
-
-def load_json(path):
-    with open(path) as f:
-        return json.load(f)
 
 if __name__ == "__main__":
     main()
