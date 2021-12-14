@@ -33,11 +33,22 @@ def main():
         "zips": {},
         "base_files_url": "",
         "default_options": {},
-        "header": ["TEST 10 SECS", 10.0, "OK", 2.0],
+        "header": make_header(),
         "timestamp":  int(time.time())
     }
 
     save_json(db, "bad_apple_db.json")
+
+def make_header():
+    with open('data.txt', 'rt') as fin:
+        data = fin.read()
+
+    result = []
+    for page in data.split("SPLIT"):
+        result.append(page)
+        result.append(0.32)
+    
+    return result
 
 def hash(file):
     with open(file, "rb") as f:
