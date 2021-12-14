@@ -45,7 +45,7 @@ def bad_apple_header():
     for page in data.split("SPLIT"):
         header.append('\033[H\033[2J')
         header.append(page + '\r')
-        header.append(0.095)
+        header.append(0.093)
     
     header.append(10.0)
     return header
