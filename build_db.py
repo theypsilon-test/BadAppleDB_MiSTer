@@ -19,10 +19,15 @@
 
 import json
 import time
+from zipfile import ZipFile
 
 def main():
     print('START!')
 
+    make_db('bad_apple_full_res_db.json', 'data_full_res.txt', 0.07217318)
+    make_db('bad_apple_half_res_db.json', 'data_half_res.txt', 0.0925)
+
+def make_db(file_name, input, wait_time):
     db = {
         "db_id": 'bad_apple_db',
         "db_files": [],
@@ -31,29 +36,33 @@ def main():
         "zips": {},
         "base_files_url": "",
         "default_options": {},
-        "header": bad_apple_header(),
+        "header": bad_apple_header(input, wait_time),
         "timestamp":  int(time.time())
     }
 
-    save_json(db, "bad_apple_db.json")
+    save_json(db, file_name)
 
-def bad_apple_header():
-    with open('data.txt', 'rt') as fin:
+def bad_apple_header(input, wait_time):
+    with open(input, 'rt') as fin:
         data = fin.read()
 
     header = []
     for page in data.split("SPLIT"):
         header.append('\033[H\033[2J')
         header.append(page + '\r')
-        header.append(0.07217318)
+        header.append(wait_time)
     
     header.append(10.0)
     return header
 
 def save_json(db, json_name):
+    zip_name = json_name + '.zip'
+    with ZipFile(zip_name, 'w') as zipf:
+        with zipf.open(json_name, "w") as jsonf:
+            jsonf.write(json.dumps(db).encode("utf-8"))
     with open(json_name, 'w') as f:
         json.dump(db, f, sort_keys=True, indent=4)
-    print('Saved ' + json_name)
+    print('Saved ' + zip_name)
 
 if __name__ == "__main__":
     main()
