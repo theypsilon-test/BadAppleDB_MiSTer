@@ -52,7 +52,7 @@ def bad_apple_header(input, wait_time, height):
         header.append(page + '\r')
         header.append(wait_time)
     
-    header.append(4.0)
+    header.append(2.0)
     header.append('\033[H\033[2J')
 
     page = ''
@@ -72,7 +72,8 @@ def bad_apple_header(input, wait_time, height):
         page += '                                                          based on github.com/Chion82/ASCII_bad_apple                                                           \n'
 
     header.append(page)
-    header.append(8.0)
+    header.append(10.0)
+    header.append('\033[H\033[2J')
 
     return header
 
