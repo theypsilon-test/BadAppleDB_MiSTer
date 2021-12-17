@@ -74,6 +74,7 @@ def bad_apple_header(input, wait_time, height):
     header.append(page)
     header.append(10.0)
     header.append('\033[H\033[2J')
+    header.append('\n')
 
     return header
 
